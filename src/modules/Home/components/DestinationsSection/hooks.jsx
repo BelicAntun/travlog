@@ -37,8 +37,10 @@ export const useDestinationsSection = () => {
 
   const categoriesNav = Object.values(DestinationCategory).map((category) => {
     return (
-      <li key={category} className={`${category === selectedCategory ? 'text-primary-dark' : 'text-primary-gray-black-50'}`}>
-        <button onClick={() => handleCategoryClick(category)}>{category}</button>
+      <li key={category}>
+        <button onClick={() => handleCategoryClick(category)} className={`${category === selectedCategory ? 'selected' : ''}`}>
+          {category}
+        </button>
       </li>
     );
   });

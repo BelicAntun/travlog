@@ -7,30 +7,26 @@ export const DestinationsSection = () => {
     useDestinationsSection();
 
   return (
-    <section className="flex flex-col gap-[44px] w-full py-10 ">
-      <div className="flex justify-between flex-col sm:flex-row space-y-6 items-center w-full px-7 sm:px-0">
-        <div className="flex flex-col gap-[15px]">
-          <span className="text-secondary uppercase text-lg tracking-[0.32px] font-semibold">Top Destination</span>
-          <span className="font-semibold text-secondary-dark text-[40px] leading-[1.2]">Explore top destination</span>
+    <section className="destinations-section">
+      <div className="section-header">
+        <div className="header-content">
+          <span className="category-label">Top Destination</span>
+          <span className="destination-section-title">Explore top destination</span>
         </div>
-        <ul className="lg:flex space-x-[38.4px] text-base leading-[1.2] font-medium whitespace-nowrap hidden">
+        <ul className="category-list">
           {categoriesNav}
-          <li className="text-secondary ">
+          <li className="all-categories">
             <button
               onClick={() => handleCategoryClick('All')}
-              className={selectedCategory === 'All' ? 'underline underline-offset-2' : ''}
+              className={selectedCategory === 'All' ? 'all-categories all-button-selected' : 'all-categories'}
             >
               See All
             </button>
           </li>
         </ul>
-        <div className="flex space-x-4 lg:hidden">
+        <div className="category-dropdown">
           <span>Category:</span>
-          <select
-            className="text-base leading-[1.2] font-medium text-secondary-dark border border-secondary-dark"
-            value={selectedCategory}
-            onChange={(e) => handleCategoryClick(e.target.value)}
-          >
+          <select value={selectedCategory} onChange={(e) => handleCategoryClick(e.target.value)}>
             {categoriesSelect}
             <option value="All">See all</option>
           </select>
@@ -38,13 +34,13 @@ export const DestinationsSection = () => {
       </div>
 
       {!isLoading && !error ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10 mx-auto">
+        <div className="destination-grid">
           {travelDestinations.map((destination) => {
             return <TravelCard {...destination} key={destination.id} />;
           })}
         </div>
       ) : (
-        <>{error ? <p className="text-red-500">{error}</p> : <Loader />}</>
+        <>{error ? <p className="error-message">{error}</p> : <Loader />}</>
       )}
     </section>
   );

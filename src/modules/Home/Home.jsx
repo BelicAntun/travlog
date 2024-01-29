@@ -2,7 +2,7 @@ import { HeroSection, DestinationsSection, NewsletterSection } from './component
 
 export const Home = () => {
   return (
-    <div className="flex flex-col flex-1 sm:px-12 md:px-[90px] pb-[69px]">
+    <div className="home">
       <HeroSection />
       <DestinationsSection />
       <NewsletterSection />
